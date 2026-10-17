@@ -16,14 +16,15 @@
 | **id** | INTEGER |
 | nom | VARCHAR(50) |
 
-## TABLE commande (nouveau)
+## TABLE commande (modifié)
 
 | colonne | type |
 | --- | --- |
 | **id** | INTEGER |
 | date | TIMESTAMP |
+| #id_client | INTEGER |
 
-## TABLE relation_commande_plat (nouveau)
+## TABLE relation_commande_plat
 
 | colonne | type |
 | --- | --- |
@@ -31,3 +32,9 @@
 | #id_plat | INTEGER |
 | quantite | INTEGER |
 
+## TABLE client (nouveau)
+
+| colonne | type |
+| --- | --- |
+| **id** | INTEGER |
+| nom | VARCHAR(150) |

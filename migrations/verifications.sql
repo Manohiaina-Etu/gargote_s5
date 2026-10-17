@@ -50,3 +50,19 @@ SELECT  com.id as id_commande,
     GROUP BY com.id, com.date
     ORDER BY com.id
 ;
+
+
+-----------------------------
+--- Etape 4 ---
+-----------------------------
+
+-- afficher la liste des commandes avec les clients
+SELECT  com.id,
+        com.date,
+        CASE
+            WHEN cli.id IS NULL THEN 'Client de passage'
+            ELSE cli.nom
+        END AS nom_client
+    FROM commande com
+    LEFT JOIN client cli on cli.id = com.id_client
+;
