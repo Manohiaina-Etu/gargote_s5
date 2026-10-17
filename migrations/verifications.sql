@@ -66,3 +66,28 @@ SELECT  com.id,
     FROM commande com
     LEFT JOIN client cli on cli.id = com.id_client
 ;
+
+
+-----------------------------
+--- Etape 5 ---
+-----------------------------
+
+-- nombre de commandes par serveur
+SELECT  ser.id as id_serveur,
+        ser.nom as nom_serveur,
+        COUNT(ser.id) as nbr_commande
+    FROM commande com 
+    JOIN serveur ser on com.id_serveur = ser.id
+    GROUP BY ser.id, ser.nom
+    ORDER BY ser.id
+;
+
+-- chiffre d'affaire par serveur
+SELECT  det.id_serveur,
+        ser.nom,
+        SUM(montant_total) as chiffre_affaire
+    FROM detail_commande det
+    JOIN serveur ser on ser.id = det.id_serveur
+    GROUP BY det.id_serveur, ser.nom
+    ORDER BY det.id_serveur
+;

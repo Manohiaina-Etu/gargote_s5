@@ -23,6 +23,8 @@
 | **id** | INTEGER |
 | date | TIMESTAMP |
 | #id_client | INTEGER |
+| #id_serveur | INTEGER |
+| #id_latabatra | INTEGER |
 
 ## TABLE relation_commande_plat
 
@@ -32,7 +34,21 @@
 | #id_plat | INTEGER |
 | quantite | INTEGER |
 
-## TABLE client (nouveau)
+## TABLE client
+
+| colonne | type |
+| --- | --- |
+| **id** | INTEGER |
+| nom | VARCHAR(150) |
+
+## TABLE serveur (nouveau)
+
+| colonne | type |
+| --- | --- |
+| **id** | INTEGER |
+| nom | VARCHAR(150) |
+
+## TABLE latabatra (nouveau)
 
 | colonne | type |
 | --- | --- |
