@@ -16,7 +16,7 @@
 | **id** | INTEGER |
 | nom | VARCHAR(50) |
 
-## TABLE commande (modifié)
+## TABLE commande
 
 | colonne | type |
 | --- | --- |
@@ -41,16 +41,35 @@
 | **id** | INTEGER |
 | nom | VARCHAR(150) |
 
-## TABLE serveur (nouveau)
+## TABLE serveur
 
 | colonne | type |
 | --- | --- |
 | **id** | INTEGER |
 | nom | VARCHAR(150) |
 
-## TABLE latabatra (nouveau)
+## TABLE latabatra
 
 | colonne | type |
 | --- | --- |
 | **id** | INTEGER |
 | nom | VARCHAR(150) |
+
+## TABLE type_paiement (nouveau)
+
+| colonne | type |
+| --- | --- |
+| **id** | INTEGER |
+| libelle | VARCHAR(150) |
+| actif | BOOLEAN |
+
+## TABLE paiement (nouveau)
+
+| colonne | type |
+| --- | --- |
+| **id** | INTEGER |
+| #id_commande | INTEGER |
+| #id_type_paiement | INTEGER |
+| reference_mobile_money | VARCHAR(150) |
+| montant | INTEGER |
+| date_paiement | TIMESTAMP |

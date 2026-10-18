@@ -91,3 +91,28 @@ SELECT  det.id_serveur,
     GROUP BY det.id_serveur, ser.nom
     ORDER BY det.id_serveur
 ;
+
+
+-----------------------------
+--- Etape 6 ---
+-----------------------------
+
+-- vue somme des paiements par commande
+CREATE VIEW paiement_commande AS
+    SELECT  p.id_commande as id_commande,
+            SUM(p.montant) as montant_paye
+        FROM paiement p
+        GROUP BY p.id_commande
+        ORDER BY p.id_commande
+;
+
+--  liste des commandes non soldées avec le montant dû, le montant payé et le reste à payer
+SELECT  det.id_commande,
+        det.montant_total as montant_dû,
+        COALESCE(p.montant_paye,0) as montant_paye,
+        det.montant_total - COALESCE(p.montant_paye,0) as reste_a_payer    
+    FROM detail_commande DET
+    LEFT JOIN paiement_commande p on p.id_commande = det.id_commande
+    WHERE det.montant_total - COALESCE(p.montant_paye,0) > 0
+    ORDER BY det.id_commande
+; 
