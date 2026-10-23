@@ -116,3 +116,21 @@ SELECT  det.id_commande,
     WHERE det.montant_total - COALESCE(p.montant_paye,0) > 0
     ORDER BY det.id_commande
 ; 
+
+-----------------------------
+--- Etape 7 ---
+-----------------------------
+
+SELECT rel.id_commande, rel.id_plat, rel.prix_plat, p.prix FROM relation_commande_plat rel
+    JOIN plat p ON p.id = rel.id_plat
+;
+
+SELECT  com.id as id_commande,
+        com.date,
+        SUM(rel.prix_plat * rel.quantite) as montant_total
+    FROM commande com
+    JOIN relation_commande_plat rel ON com.id = rel.id_commande
+    JOIN plat p on p.id = rel.id_plat
+    GROUP BY com.id, com.date
+    ORDER BY com.id
+;

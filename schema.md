@@ -26,13 +26,14 @@
 | #id_serveur | INTEGER |
 | #id_latabatra | INTEGER |
 
-## TABLE relation_commande_plat
+## TABLE relation_commande_plat (modifié)
 
 | colonne | type |
 | --- | --- |
 | #id_commande | INTEGER |
 | #id_plat | INTEGER |
 | quantite | INTEGER |
+| prix_plat | INTEGER |
 
 ## TABLE client
 
@@ -55,7 +56,7 @@
 | **id** | INTEGER |
 | nom | VARCHAR(150) |
 
-## TABLE type_paiement (nouveau)
+## TABLE type_paiement
 
 | colonne | type |
 | --- | --- |
@@ -63,7 +64,7 @@
 | libelle | VARCHAR(150) |
 | actif | BOOLEAN |
 
-## TABLE paiement (nouveau)
+## TABLE paiement
 
 | colonne | type |
 | --- | --- |
