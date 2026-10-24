@@ -182,3 +182,27 @@ SELECT  com.id_ingredient,
     GROUP BY com.id_ingredient, nb.date_commande, ing.unite
     ORDER BY com.id_ingredient
 ;
+
+-----------------------------
+--- Etape 9 ---
+-----------------------------
+
+CREATE VIEW plat_simple AS
+    SELECT * FROM plat
+    WHERE is_menu = false
+;
+
+SELECT  p.id as id_plat_menu,
+        p.nom as nom_menu,
+        p.id_categorie,
+        p.prix as prix_menu,
+        SUM(ps.prix * pm.quantite_plat_compose) as somme_prix_carte,
+        SUM(ps.prix * pm.quantite_plat_compose) - p.prix AS economie
+    FROM plat p
+    JOIN plat_menu pm on p.id = pm.id_plat
+    JOIN plat_simple ps on ps.id = pm.id_plat_compose
+    WHERE p.is_menu = true
+    GROUP BY p.id, p.nom, p.id_categorie, p.prix
+    ORDER BY p.id
+;
+    

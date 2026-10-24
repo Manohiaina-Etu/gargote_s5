@@ -1,6 +1,6 @@
 # Schema relationnel
 
-## TABLE plat
+## TABLE plat (modifié)
 
 | colonne | type |
 | --- | --- |
@@ -8,6 +8,7 @@
 | nom | VARCHAR(50) |
 | prix | INTEGER |
 | #id_categorie | INTEGER |
+| is_menu | BOOLEAN |
 
 ## TABLE categorie
 
@@ -75,7 +76,7 @@
 | montant | INTEGER |
 | date_paiement | TIMESTAMP |
 
-## TABLE ingredient (nouveau)
+## TABLE ingredient
 
 | colonne | type |
 | --- | --- |
@@ -84,10 +85,18 @@
 | unite | VARCHAR(50) |
 | stock | INTEGER |
 
-## TABLE composition_plat (nouveau)
+## TABLE composition_plat
 
 | colonne | type |
 | --- | --- |
 | #id_plat | INTEGER |
 | #id_ingredient | INTEGER |
 | qauntite | INTEGER |
+
+## TABLE plat_menu (nouveau)
+
+| colonne | type |
+| --- | --- |
+| #id_plat | INTEGER |
+| #id_plat_compose | INTEGER |
+| quantite_plat_compose | INTEGER |
