@@ -134,3 +134,51 @@ SELECT  com.id as id_commande,
     GROUP BY com.id, com.date
     ORDER BY com.id
 ;
+
+-----------------------------
+--- Etape 8 ---
+-----------------------------
+
+CREATE VIEW plats_commandee AS
+    SELECT  com.id as id_commande,
+        com.date,
+        rel.id_plat as id_plat,
+        p.nom as nom_plat,
+        rel.quantite as quantite_plat
+    FROM commande com
+    JOIN relation_commande_plat rel ON com.id = rel.id_commande
+    JOIN plat p on p.id = rel.id_plat
+    ORDER BY com.id
+;
+
+CREATE VIEW nbr_plats_commandee AS
+    SELECT  pc.id_plat,
+            pc.nom_plat,
+            SUM(pc.quantite_plat) as nbr_plat_commandee,
+            CAST(pc.date AS DATE) as date_commande
+    FROM plats_commandee pc
+    GROUP BY pc.id_plat, pc.nom_plat, date_commande
+;
+
+SELECT  com.id_ingredient,
+        nb.nbr_plat_commandee,
+        com.quantite,
+        ing.unite,
+        nb.date_commande
+    FROM nbr_plats_commandee nb
+    JOIN composition_plat com on nb.id_plat = com.id_plat
+    JOIN ingredient ing on ing.id = com.id_ingredient
+    ORDER BY com.id_ingredient
+;
+
+SELECT  com.id_ingredient,
+        SUM(nb.nbr_plat_commandee * com.quantite) as quantite_total,
+        ing.unite,
+        nb.date_commande
+    FROM nbr_plats_commandee nb
+    JOIN composition_plat com on nb.id_plat = com.id_plat
+    JOIN ingredient ing on ing.id = com.id_ingredient
+    WHERE nb.date_commande = '16-10-2026'
+    GROUP BY com.id_ingredient, nb.date_commande, ing.unite
+    ORDER BY com.id_ingredient
+;

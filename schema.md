@@ -26,7 +26,7 @@
 | #id_serveur | INTEGER |
 | #id_latabatra | INTEGER |
 
-## TABLE relation_commande_plat (modifié)
+## TABLE relation_commande_plat
 
 | colonne | type |
 | --- | --- |
@@ -74,3 +74,20 @@
 | reference_mobile_money | VARCHAR(150) |
 | montant | INTEGER |
 | date_paiement | TIMESTAMP |
+
+## TABLE ingredient (nouveau)
+
+| colonne | type |
+| --- | --- |
+| **id** | INTEGER |
+| libelle | VARCHAR(50) |
+| unite | VARCHAR(50) |
+| stock | INTEGER |
+
+## TABLE composition_plat (nouveau)
+
+| colonne | type |
+| --- | --- |
+| #id_plat | INTEGER |
+| #id_ingredient | INTEGER |
+| qauntite | INTEGER |
